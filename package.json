@@ -1,0 +1,22 @@
+{
+  "name": "wordpress-contact",
+  "version": "1.0.0",
+  "description": "Code for our WordPress contact page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badgerloop-software/wordpress-contact.git"
+  },
+  "author": "Badgerloop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/badgerloop-software/wordpress-contact/issues"
+  },
+  "homepage": "https://github.com/badgerloop-software/wordpress-contact#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
