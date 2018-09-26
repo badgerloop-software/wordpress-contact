@@ -1,19 +1,5 @@
-/*  TODO: Talked to Kevin about the design, he thought about having one form and 
-    having a 'reason for contacting' drop down that will change the other fields 
-    on the form based on what the user selectes.
-
-    Basic format: 
-
-    Name:
-    Reason for Contacting (dropdown) 
-    New inputs based on what is selected above
-
-    e.g. if student is selected, create year, major, insterested teams, tell 
-    us about yourself fields.
-
-    Basically need to start over this file.
-*/
-
+/*  Detects which reason for contactin was selected by the user 
+    And calls the appropriate function based on that */
 function dynamicForm() {
     let selected = document.querySelector(".input-select").value.toLowerCase();
     switch(selected) {
@@ -31,44 +17,56 @@ function dynamicForm() {
             break;
     }
 }
-
+/* START UI editing based on contact reason selection */
 function populateStudentForm() {
     let form = `
     <div class="input-label">Major:</div>
-    <input class="input-text" type="text">
+    <input class="input input-text" type="text">
     <div class="input-label">Year:</div>
-    <input class="input-text" type="text">
+    <input class="input input-text" type="text">
     <div class="input-label">Team(s) Interested In:</div>
-    <input class="input-text" type="text">
+    <input class="input input-text" type="text">
     <div class="input-label">Tell Us About Yourself:</div>
-    <textarea class="input-textarea"></textarea>
-    <div class="button">Submit</div>
+    <textarea class="input input input-textarea"></textarea>
+    <div class="button" onclick="exampleClick()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateSponsorForm() {
     let form = `
     <div class="input-label">Company Name:</div>
-    <input class="input-text" type="text">
+    <input class="input input-text" type="text">
     <div class="input-label">Additional Information:</div>
-    <textarea class="input-textarea"></textarea>
-    <div class="button">Submit</div>
+    <textarea class="input input-textarea"></textarea>
+    <div class="button" onclick="exampleClick()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateMediaForm() {
     let form = `
     <div class="input-label">Organization Name:</div>
-    <input class="input-text" type="text">
-    <div class="input-label">
-    <div class="button">Submit</div>
+    <input class="input input-text" type="text">
+    <div class="input-label">Additional Information:</div>
+    <textarea class="input input-textarea"></textarea>
+    <div class="button" onclick="exampleClick()">Submit</div>
     `;
-
+    document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateOtherForm() {
     let form = `
     <div class="input-label">Message:</div>
-    <textarea class="input-textarea-large" type="text">
+    <textarea class="input input-textarea" type="text"></textarea>
+    <div class="button" onclick="exampleClick()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
+}
+/* END UI editing */
+
+function exampleClick() {
+    let string = `Information Entered: \n`;
+    let list = document.querySelectorAll(".input");
+    for (x of list) {
+        string += ` ${x.value} \n`;
+    }
+    alert(string);
 }
