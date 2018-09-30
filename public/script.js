@@ -86,7 +86,8 @@ function exampleAPI() {
     xhttp.send(null);
 }
 
-//Posts to website channel for now
+// Posts to website channel for now
+// we probably want to move this to the backend so the Hook URL isn't available publicly
 function slackExample() {
     let xhttp = new XMLHttpRequest();
 
