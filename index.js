@@ -2,6 +2,10 @@ let express = require('express');
 
 let app = express();
 
-app.use(express.static('/public'));
+app.use(express.static('./public'));
 
-app.listen(3000);
+app.get('/example1', (req, res, next) => {
+    res.send("Hello World");
+});
+
+app.listen(3002);
