@@ -86,6 +86,7 @@ function exampleAPI() {
     xhttp.send(null);
 }
 
+//Posts to website channel for now
 function slackExample() {
     let xhttp = new XMLHttpRequest();
 
@@ -93,9 +94,6 @@ function slackExample() {
         text: "Hello, World"
     }
     
-    let options = {
-        
-    }
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
