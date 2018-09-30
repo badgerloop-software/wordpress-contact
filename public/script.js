@@ -85,3 +85,27 @@ function exampleAPI() {
     xhttp.open("GET", 'https://liammahoney.me/api/example1');
     xhttp.send(null);
 }
+
+function slackExample() {
+    let xhttp = new XMLHttpRequest();
+
+    let message = {
+        text: "Hello, World"
+    }
+    
+    let options = {
+        
+    }
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText);
+        } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
+            console.log(`ERROR: ${xhttp.responseText}`);
+        }
+    }
+
+    xhttp.open("POST", 'https://hooks.slack.com/services/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');
+    xhttp.send(JSON.stringify(message));
+}
+
+
