@@ -70,3 +70,18 @@ function exampleClick() {
     }
     alert(string);
 }
+
+function exampleAPI() {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText);
+        } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
+            console.log(`ERROR: ${xhttp.responseText}`);
+        }
+    }
+
+    xhttp.open("GET", 'https://liammahoney.me/api/example1');
+    xhttp.send(null);
+}
