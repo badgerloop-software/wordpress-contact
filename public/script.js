@@ -1,5 +1,6 @@
 function chooseOption(value) {
-    document.getElementById("input-select").innerHTML = value;
+    document.querySelector(".input-select-main").innerHTML = value;
+    document.querySelector(".input-select").value = value;
     optionExpand();
 }
 /* START UI editing based on contact reason selection */
@@ -7,6 +8,7 @@ function optionExpand() {
     document.getElementById("input-select").classList.toggle("option-active");
     document.querySelector(".input-select-expand").classList.toggle("hidden");
     document.getElementById("input-select").classList.toggle("no-margin-radius-bottom");
+    document.querySelector(".arrow").classList.toggle("arrow-rotate");
 }
 function populateStudentForm() {
     chooseOption("Student Application");
@@ -70,17 +72,18 @@ function sendSlackMessage() {
         slackMessage += `*${x.title}:* ${x.value} \n`;
     }
     
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
-            console.log(xhttp.responseText);
-        } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
-            //TODO: catch errors from Slack and from our API
-            console.log(`ERROR: ${xhttp.responseText}`);
-        }
-    }
+    console.log(slackMessage);
+    // xhttp.onreadystatechange = function() {
+    //     if (xhttp.readyState === 4 && xhttp.status === 200) {
+    //         console.log(xhttp.responseText);
+    //     } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
+    //         //TODO: catch errors from Slack and from our API
+    //         console.log(`ERROR: ${xhttp.responseText}`);
+    //     }
+    // }
 
-    xhttp.open("POST", '../contact') //TODO: need full link to server API when implemented.
-    xhttp.send(slackMessage);
+    // xhttp.open("POST", '../contact') //TODO: need full link to server API when implemented.
+    // xhttp.send(slackMessage);
 }
 
 
