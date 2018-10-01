@@ -21,90 +21,72 @@ function dynamicForm() {
 function populateStudentForm() {
     let form = `
     <div class="input-label">Major:</div>
-    <input class="input input-text" type="text">
+    <input class="input input-text" type="text" title="Major">
     <div class="input-label">Year:</div>
-    <input class="input input-text" type="text">
+    <input class="input input-text" type="text" title="Year">
     <div class="input-label">Team(s) Interested In:</div>
-    <input class="input input-text" type="text">
+    <input class="input input-text" type="text" title="Teams Interested In">
     <div class="input-label">Tell Us About Yourself:</div>
-    <textarea class="input input input-textarea"></textarea>
-    <div class="button" onclick="exampleClick()">Submit</div>
+    <textarea class="input input input-textarea" title="Additional Info"></textarea>
+    <div class="button" onclick="sendSlackMessage()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateSponsorForm() {
     let form = `
     <div class="input-label">Company Name:</div>
-    <input class="input input-text" type="text">
+    <input class="input input-text" type="text" title="Company">
     <div class="input-label">Additional Information:</div>
-    <textarea class="input input-textarea"></textarea>
-    <div class="button" onclick="exampleClick()">Submit</div>
+    <textarea class="input input-textarea" title="Additional Info"></textarea>
+    <div class="button" onclick="sendSlackMessage()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateMediaForm() {
     let form = `
     <div class="input-label">Organization Name:</div>
-    <input class="input input-text" type="text">
+    <input class="input input-text" type="text" title="Organization">
     <div class="input-label">Additional Information:</div>
-    <textarea class="input input-textarea"></textarea>
-    <div class="button" onclick="exampleClick()">Submit</div>
+    <textarea class="input input-textarea" title="Additional Info"></textarea>
+    <div class="button" onclick="sendSlackMessage()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateOtherForm() {
     let form = `
     <div class="input-label">Message:</div>
-    <textarea class="input input-textarea" type="text"></textarea>
-    <div class="button" onclick="exampleClick()">Submit</div>
+    <textarea class="input input-textarea" type="text" title="Message"></textarea>
+    <div class="button" onclick="sendSlackMessage()">Submit</div>
     `;
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 /* END UI editing */
 
-function exampleClick() {
-    let string = `Information Entered: \n`;
-    let list = document.querySelectorAll(".input");
-    for (x of list) {
-        string += ` ${x.value} \n`;
-    }
-    alert(string);
-}
 
-function exampleAPI() {
+// Posts to our API on our server. Sends all of the form data submitted
+// by the user and formats it properly for the Slack message.
+function sendSlackMessage() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
-            console.log(xhttp.responseText);
-        } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
-            console.log(`ERROR: ${xhttp.responseText}`);
-        }
-    }
+    let slackMessage = "";
 
-    xhttp.open("GET", 'https://liammahoney.me/api/example1');
-    xhttp.send(null);
-}
+    let userInput = document.querySelectorAll(".input");
 
-// Posts to website channel for now
-// we probably want to move this to the backend so the Hook URL isn't available publicly
-function slackExample() {
-    let xhttp = new XMLHttpRequest();
-
-    let message = {
-        text: "Hello, World"
+    for (x of userInput) {
+        slackMessage += `*${x.title}:* ${x.value} \n`;
     }
     
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
         } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
+            //TODO: catch errors from Slack and from our API
             console.log(`ERROR: ${xhttp.responseText}`);
         }
     }
 
-    xhttp.open("POST", 'https://hooks.slack.com/services/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');
-    xhttp.send(JSON.stringify(message));
+    xhttp.open("POST", '../contact') //TODO: need full link to server API when implemented.
+    xhttp.send(slackMessage);
 }
 
 
