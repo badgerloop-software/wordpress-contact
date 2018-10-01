@@ -1,27 +1,15 @@
-/*  Detects which reason for contactin was selected by the user 
-    And calls the appropriate function based on that */
-function dynamicForm() {
-    let selected = document.querySelector(".input-select").value.toLowerCase();
-    switch(selected) {
-        case "student application":
-            populateStudentForm();
-            break;
-        case "sponsorship inquiry":
-            populateSponsorForm();
-            break;
-        case "media inquiry":
-            populateMediaForm();
-            break;
-        case "other":
-            populateOtherForm();
-            break;
-    }
+function chooseOption(value) {
+    document.getElementById("input-select").innerHTML = value;
+    optionExpand();
 }
 /* START UI editing based on contact reason selection */
-function optionClick() {
+function optionExpand() {
+    document.getElementById("input-select").classList.toggle("option-active");
     document.querySelector(".input-select-expand").classList.toggle("hidden");
+    document.getElementById("input-select").classList.toggle("no-margin-radius-bottom");
 }
 function populateStudentForm() {
+    chooseOption("Student Application");
     let form = `
     <div class="input-label">Major:</div>
     <input class="input input-text" type="text" title="Major">
@@ -36,6 +24,7 @@ function populateStudentForm() {
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateSponsorForm() {
+    chooseOption("Sponsor Inquiry");
     let form = `
     <div class="input-label">Company Name:</div>
     <input class="input input-text" type="text" title="Company">
@@ -46,6 +35,7 @@ function populateSponsorForm() {
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateMediaForm() {
+    chooseOption("Media Inquiry");
     let form = `
     <div class="input-label">Organization Name:</div>
     <input class="input input-text" type="text" title="Organization">
@@ -56,6 +46,7 @@ function populateMediaForm() {
     document.querySelector(".dynamic-form-container").innerHTML = form;
 }
 function populateOtherForm() {
+    chooseOption("Other");
     let form = `
     <div class="input-label">Message:</div>
     <textarea class="input input-textarea" type="text" title="Message"></textarea>
