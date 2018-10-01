@@ -18,6 +18,9 @@ function dynamicForm() {
     }
 }
 /* START UI editing based on contact reason selection */
+function optionClick() {
+    document.querySelector(".input-select-expand").classList.toggle("hidden");
+}
 function populateStudentForm() {
     let form = `
     <div class="input-label">Major:</div>

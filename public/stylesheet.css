@@ -42,3 +42,6 @@
 .dynamic-form-container *:not(.button){
     min-width: 350px;
 }
+.hidden {
+    display: none;
+}

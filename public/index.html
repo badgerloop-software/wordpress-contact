@@ -10,13 +10,16 @@
                 <div class="input-label">Email Address:</div>
                 <input class="input input-text" type="email" title="Email Address">
                 <div class="input-label">Reason for Contacting:</div>
-                <select class="input input-select" onchange="dynamicForm()" title="Reason for Contact">Reason for Contacting:
-                    <option disabled selected>...</option>
-                    <option>Student Application</option>
-                    <option>Sponsorship Inquiry</option>
-                    <option>Media Inquiry</option>
-                    <option>Other</option>
-                </select>
+                <div class="input input-select" onclick="optionClick()" title="Reason for Contact">Reason for Contacting:
+
+                </div>
+                <div class="input input-select-expand hidden">
+                    <div disabled selected>...</div>
+                    <div>Student Application</div>
+                    <div>Sponsorship Inquiry</div>
+                    <div>Media Inquiry</div>
+                    <div>Other</div>
+                </div>
             </div>
             <div class="container dynamic-form-container">
 
