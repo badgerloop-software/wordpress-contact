@@ -25,7 +25,7 @@ app.post('/contact', (req, res, next) => {
 
         let options = {
             hostname: 'hooks.slack.com',
-            path: '/services/T09PPL10S/BD544U7CP/7AiaDsJ7Fp0Nv1dgpTZPQNol',
+            path: '/services/T09PPL10S/BD948FF24/9HsUZ9zw7TtifqC4TPLT8eRB',
             method: 'POST'
           };
               

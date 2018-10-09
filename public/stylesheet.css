@@ -13,15 +13,18 @@
 }
 .input-text {
     font-size: .8em;
+    border: 2px solid #282728;
 }
 .input-textarea {
     height: 200px;
     text-rendering: auto;
     font: 400 11px system-ui;
     font-size: .8em;
+    border: 2px solid #282728;
 }
 .input-select {
     font-size: .8em;
+    border: 2px solid #282728;
 }
 .input-label {
     padding-left: 5px;
@@ -30,14 +33,15 @@
 .button {
     padding: 10px 20px 10px 20px;
     cursor: pointer;
-    border: 1px solid rgb(218, 218, 218);
+    border: 2px solid #282728;
     border-radius: 5px;
     width: 100px;
     text-align: center;
+
 }
 .button:active {
-    padding: 9px 19px;
-    margin: 1px;
+    padding: 8px 18px;
+    margin: 2px;
 }
 .option-active {
     margin-bottom: 0px; /*sloppy*/
@@ -56,10 +60,10 @@
 }
 .input-select-expand {
     border-radius: 0px 0px 5px 5px;
-    margin: -1px;
+    margin: -2px;
     padding: 0px;
     margin-bottom: 5px;
-    border: 1px solid rgb(218, 218, 218);
+    border: 2px solid #282728;
     width: 350px;
 }
 .input-select-main {
@@ -91,5 +95,8 @@
     text-rendering: auto;
     font: 400 11px system-ui;
     font-size: .8em;
+    border: 2px solid #282728;
 }
-
+.form-error {
+    border: 2px solid red;
+}
