@@ -1,67 +1,60 @@
-let express = require('express');
 let https = require('https');
+let http = require('http');
 
-let app = express();
+http.createServer((req, res) => {
+    console.log(req.url + " " + req.method);
 
-app.use(express.static('./public'));
+    if (req.url === '/contact' && req.method === 'POST') {
+        var postData = '';
 
-app.get('/example1', (req, res, next) => {
-    res.send("Hello World");
-});
-
-app.post('/contact', (req, res, next) => {
-    var postData = '';
-
-    req.on('data', function (data) {
-        postData += data;
-    });
-
-    req.on('end', function() {
-        console.log(`Request from client has ended : ${postData}`);
-        
-        let message = {
-            "text": postData
-        };
-
-        let options = {
-            hostname: 'hooks.slack.com',
-            path: '/services/T09PPL10S/BD948FF24/9HsUZ9zw7TtifqC4TPLT8eRB',
-            method: 'POST'
-          };
-              
-        let request = https.request(options, (response) => {
-            console.log(`Status: ${response.statusCode}`);
-            let slackResponse = "";
-
-            response.on('data', (chunk) => {
-                console.log("chunk of slack response received");
-                slackResponse += chunk;
-            });
-
-            response.on('end', () => {
-                console.log(slackResponse);
-                res.end(slackResponse);
-            });
-
+        req.on('data', function (data) {
+            postData += data;
         });
 
-        request.on('error', (e) => {
-            console.log(`error: ${e.message}`);
-            res.end(e.message);
-        });
+        req.on('end', function() {
+            console.log(`Request from client has ended : ${JSON.parse(postData)}`);
             
-        // write data to request body
-        request.write(JSON.stringify(message));
-        request.end();
-    });
+            let message = {
+                "text": JSON.parse(postData)
+            };
 
-});
+            let options = {
+                hostname: 'hooks.slack.com',
+                path: '/services/T09PPL10S/BD948FF24/9HsUZ9zw7TtifqC4TPLT8eRB',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+                
+            let request = https.request(options, (response) => {
+                console.log(`Status: ${response.statusCode}`);
+                let slackResponse = "";
 
-//Sample request to Webhook
-// curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' YOUR_WEBHOOK_URL_HERE
+                response.on('data', (chunk) => {
+                    console.log("chunk of slack response received");
+                    slackResponse += chunk;
+                });
 
-app.listen(3002);
+                response.on('end', () => {
+                    console.log(slackResponse);
+                    res.writeHead(200, {'Content-Type': 'application/json'});
+                    res.end(slackResponse);
+                });
 
-function createSlackMessage(obj) {
+            });
 
-}
+            request.on('error', (e) => {
+                console.log(`error: ${e.message}`);
+                res.writeHead(e.statusCode);
+                res.end(e.message);
+            });
+                
+            // write data to request body
+            request.write(JSON.stringify(message));
+            request.end();
+        });
+    }
+
+}).listen(8000, '127.0.0.1');
+

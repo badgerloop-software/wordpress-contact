@@ -13,18 +13,18 @@
 }
 .input-text {
     font-size: .8em;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
 }
 .input-textarea {
     height: 200px;
     text-rendering: auto;
     font: 400 11px system-ui;
     font-size: .8em;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
 }
 .input-select {
     font-size: .8em;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
 }
 .input-label {
     padding-left: 5px;
@@ -33,7 +33,7 @@
 .button {
     padding: 10px 20px 10px 20px;
     cursor: pointer;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
     border-radius: 5px;
     width: 100px;
     text-align: center;
@@ -56,14 +56,14 @@
     cursor: pointer;
 }
 .select-option:hover {
-    background-color: grey;
+    background-color: #dadada;
 }
 .input-select-expand {
     border-radius: 0px 0px 5px 5px;
-    margin: -2px;
+    margin: -1px;
     padding: 0px;
     margin-bottom: 5px;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
     width: 350px;
 }
 .input-select-main {
@@ -95,7 +95,7 @@
     text-rendering: auto;
     font: 400 11px system-ui;
     font-size: .8em;
-    border: 2px solid #282728;
+    border: 1px solid #dadada;
 }
 .form-error {
     border: 2px solid red;

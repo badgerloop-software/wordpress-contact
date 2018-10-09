@@ -91,6 +91,14 @@ function formCorrect(obj) {
 function sendSlackMessage() {
     let xhttp = new XMLHttpRequest();
 
+    let slackMessage = "";
+
+    let userInput = document.querySelectorAll(".input");
+
+    for (x of userInput) {
+       slackMessage += "*" + x.title + ":* " + x.value + " \n";
+   }
+
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
@@ -100,8 +108,8 @@ function sendSlackMessage() {
         }
     }
 
-    xhttp.open("POST", '../contact') //TODO: need full link to server API when implemented.
-    xhttp.send(slackMessage);
+    xhttp.open("POST", 'http://34.222.19.114/node/contact') //TODO: need full link to server API when implemented.
+    xhttp.send(JSON.stringify(slackMessage));
 }
 
 
