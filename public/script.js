@@ -91,15 +91,6 @@ function formCorrect(obj) {
 function sendSlackMessage() {
     let xhttp = new XMLHttpRequest();
 
-    let slackMessage = "";
-
-    let userInput = document.querySelectorAll(".input");
-
-    for (x of userInput) {
-        slackMessage += `*${x.title}:* ${x.value} \n`;
-    }
-    
-    console.log(slackMessage);
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             console.log(xhttp.responseText);
