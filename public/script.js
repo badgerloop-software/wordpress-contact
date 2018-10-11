@@ -101,7 +101,8 @@ function sendSlackMessage() {
 
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            console.log(xhttp.responseText);
+            displayStatusMessage('success');
+            clearForm();
         } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
             //TODO: catch errors from Slack and from our API
             console.log(`ERROR: ${xhttp.responseText}`);
@@ -111,5 +112,39 @@ function sendSlackMessage() {
     xhttp.open("POST", 'http://34.222.19.114/node/contact') //TODO: need full link to server API when implemented.
     xhttp.send(JSON.stringify(slackMessage));
 }
+
+function clearForm() {
+    let inputlist = document.querySelectorAll('.input');
+    for (let x of inputlist) {
+        x.value = "";
+    }
+    document.querySelector('.input-select-main').innerHTML = "";
+    document.querySelector('.dynamic-form-container').innerHTML = "";
+}
+
+function displayStatusMessage(status) {
+    let message = undefined;
+    let css = undefined;
+    if (status === 'success') {
+        message = "Message Successfully Sent";
+        css = "success-message";
+    } else if (status === 'error') {
+        message = "There Has Been an Error. \n A Member of Badgerloop has been notified."
+        css = "error-message";
+    }
+    let html = "<div class='status-container " + css + "'><div class='status-content'>" + message + "</div><div class='status-close' onclick='closeStatusMessage(this)'><img id='status-close-image' src='/pics/x-button.png'></div></div>";
+    document.querySelector('.status-message').innerHTML = html;
+
+}
+
+/*
+    removes status message from DOM.
+
+    obj: div that has the x button in it
+*/
+function closeStatusMessage(obj) {
+    obj.parentElement.parentElement.removeChild(obj.parentElement);
+}
+
 
 

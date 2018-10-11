@@ -4,6 +4,9 @@
     </head>
     <body>
         <div class="container">
+            <div class="status-message">
+
+            </div>
             <div class="container static-form-container">
                 <div class="input-label">Name:</div>
                 <input class="input input-text" type="text" title="Name">
@@ -11,7 +14,7 @@
                 <input class="input input-text" type="email" title="Email Address">
                 <div class="input-label">Reason for Contacting:</div>
                 <div id="input-select" class="input input-select" onclick="optionExpand()" title="Reason for Contact" value="">
-                    <div class="input-select-main"></div><div class="input-select-main arrow-container"><img class="arrow" src="arrow.png"></div> <!--TODO: host arrow.png on server-->
+                    <div class="input-select-main"></div><div class="input-select-main arrow-container"><img class="arrow arrow-rotate" src="/pics/arrow.png"></div> <!--TODO: host arrow.png on server-->
                 </div>
                 <div class="input-select-expand hidden">
                     <div class="select-option" onclick="populateStudentForm()"><div class="test">Student Application</div></div>

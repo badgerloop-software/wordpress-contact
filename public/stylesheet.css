@@ -98,5 +98,25 @@
     border: 1px solid #dadada;
 }
 .form-error {
-    border: 2px solid red;
+    border: 1px solid red;
+}
+.status-container {
+    display: flex;
+    padding: 1.3em;
+    margin-bottom: 1em;
+    border-radius: .2em;
+}
+.status-close {
+    cursor: pointer;
+    margin-left: 1em;
+}
+.success-message {
+    background-color: #9de579;
+}
+.error-message {
+    background-color: #e57979;
+}
+.row-container {
+    display: flex;
+    justify-content: center;
 }
