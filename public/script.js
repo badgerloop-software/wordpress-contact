@@ -109,7 +109,7 @@ function sendSlackMessage() {
         }
     }
 
-    xhttp.open("POST", 'http://badgerloop.com/node/contact') //TODO: need full link to server API when implemented.
+    xhttp.open("POST", 'https://badgerloop.com/node/contact') //TODO: need full link to server API when implemented.
     xhttp.send(JSON.stringify(slackMessage));
 }
 
