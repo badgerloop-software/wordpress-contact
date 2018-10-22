@@ -12,7 +12,6 @@ http.createServer((req, res) => {
         });
 
         req.on('end', function() {
-            console.log(`Request from client has ended : ${JSON.parse(postData)}`);
             
             let message = {
                 "text": JSON.parse(postData)
@@ -28,16 +27,13 @@ http.createServer((req, res) => {
             };
                 
             let request = https.request(options, (response) => {
-                console.log(`Status: ${response.statusCode}`);
                 let slackResponse = "";
 
                 response.on('data', (chunk) => {
-                    console.log("chunk of slack response received");
                     slackResponse += chunk;
                 });
 
                 response.on('end', () => {
-                    console.log(slackResponse);
                     res.writeHead(200, {'Content-Type': 'application/json'});
                     res.end(slackResponse);
                 });
@@ -45,7 +41,6 @@ http.createServer((req, res) => {
             });
 
             request.on('error', (e) => {
-                console.log(`error: ${e.message}`);
                 res.writeHead(e.statusCode);
                 res.end(e.message);
             });

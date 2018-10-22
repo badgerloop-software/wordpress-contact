@@ -97,19 +97,19 @@ function sendSlackMessage() {
 
     for (x of userInput) {
        slackMessage += "*" + x.title + ":* " + x.value + " \n";
-   }
+    }
 
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             displayStatusMessage('success');
             clearForm();
         } else if (xhttp.readyState === 4 && xhttp.status !== 200) {
-            //TODO: catch errors from Slack and from our API
-            console.log(`ERROR: ${xhttp.responseText}`);
+            //TODO: catch errors from Slack and from our API - set up email
+            displayStatusMessage('error');
         }
     }
 
-    xhttp.open("POST", 'http://34.222.19.114/node/contact') //TODO: need full link to server API when implemented.
+    xhttp.open("POST", 'http://badgerloop.com/node/contact') //TODO: need full link to server API when implemented.
     xhttp.send(JSON.stringify(slackMessage));
 }
 
@@ -129,7 +129,7 @@ function displayStatusMessage(status) {
         message = "Message Successfully Sent";
         css = "success-message";
     } else if (status === 'error') {
-        message = "There Has Been an Error. \n A Member of Badgerloop has been notified."
+        message = "There Has Been an Error. Badgerloop has been notified."
         css = "error-message";
     }
     let html = "<div class='status-container " + css + "'><div class='status-content'>" + message + "</div><div class='status-close' onclick='closeStatusMessage(this)'><img id='status-close-image' src='/pics/x-button.png'></div></div>";
