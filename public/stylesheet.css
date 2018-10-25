@@ -114,7 +114,7 @@
     background-color: #9de579;
 }
 .error-message {
-    background-color: #e57979;
+    background-color: #e57979!important;
 }
 .row-container {
     display: flex;
